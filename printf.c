@@ -1,5 +1,6 @@
 #include <unistd.h> 		/* write(2) */
 #include <stdarg.h>		/* va_arg(3) */
+#include "holberton.h"
 
 /**
  * Allowed functions:
@@ -15,9 +16,19 @@
 
 int _printf(const char *format, ...)
 {
-	_puchar(format[0]);
+	_puts(format);
 
 	return (0);
+}
+
+void _puts(const char *s)
+{
+	unsigned long int i;
+
+	for (i = 0; s[i] != '\0'; i++)
+	{
+		_putchar(s[i]);
+	}
 }
 
 void _putchar(char c)
