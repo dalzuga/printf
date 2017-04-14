@@ -16,9 +16,14 @@
 
 int _printf(const char *format, ...)
 {
-	_puts(format);
+	unsigned long int i;
 
-	return (0);
+	for (i = 0; format[i] != '\0'; i++)
+	{
+		_putchar(format[i]);
+	}
+
+	return (i);
 }
 
 void _puts(const char *s)
