@@ -15,5 +15,12 @@
 
 int _printf(const char *format, ...)
 {
+	_puchar(format[0]);
+
 	return (0);
+}
+
+void _putchar(char c)
+{
+	write(1, &c, 1);
 }
