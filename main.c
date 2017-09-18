@@ -22,6 +22,13 @@ int main(void)
 	_printf("hello\n");
 	_printf("hello %d\n", len);
 
+	printf("hello %\n");
+	_printf("hello %\n");
+
+	printf("hello %%\n");
+	_printf("hello %%\n");
+
+
 	if (0)
 	{
 		printf("%d\n", len);
