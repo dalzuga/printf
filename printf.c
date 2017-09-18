@@ -1,6 +1,7 @@
 #include <unistd.h> 		/* write(2) */
 #include <stdarg.h>		/* va_arg(3) */
 #include "holberton.h"
+#include <stdio.h>
 
 /**
  * Allowed functions:
@@ -17,11 +18,20 @@
 int _printf(const char *format, ...)
 {
 	unsigned long int i;
+	va_list arg_ptr;
+	int d;
+
+	/* format is the last required argument */
+	va_start(arg_ptr, format);
 
 	for (i = 0; format[i] != '\0'; i++)
 	{
 		_putchar(format[i]);
 	}
+
+	d = va_arg(arg_ptr, int);
+
+	printf("len: %d\n", d);
 
 	return (i);
 }
