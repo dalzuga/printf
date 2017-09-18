@@ -1,7 +1,10 @@
 #include "holberton.h"
 
-void print_d(int d)
+void print_d(va_list *arg_ptr)
 {
+	int d;
+	d = va_arg(*arg_ptr, int);
+
 	print_number(d);
 }
 

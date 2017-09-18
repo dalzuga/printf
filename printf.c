@@ -1,5 +1,3 @@
-#include <unistd.h> 		/* write(2) */
-#include <stdarg.h>		/* va_arg(3) */
 #include "holberton.h"
 #include <stdio.h>
 
@@ -19,7 +17,12 @@ int _printf(const char *format, ...)
 {
 	unsigned long int i;
 	va_list arg_ptr;
-	int d;
+	int j;
+	fn_print params[] =
+	{
+		{'d', print_d},
+		{0, 0}
+	};
 
 	/* format is the last required argument */
 	va_start(arg_ptr, format);
@@ -28,29 +31,26 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] == '%')
 		{
-			if (format[i + 1] == 'd')
+			for (j = 0; params[j].c; j++)
 			{
-				d = va_arg(arg_ptr, int);
-				print_number(d);
-				i++;
+				if (params[j].c == format[i + 1])
+				{
+					params[j].fp(&arg_ptr);
+					i++;
+				}
 			}
-			else if (format[i + 1] == '%')
+
+			if (format[i + 1] == '%')
 			{
 				print_char('%');
-				i++;
 			}
+
 		}
 		else
 		{
 			print_char(format[i]);
 		}
 	}
-
-	/* 
-         * printf("len: %d\n", d);
-	 * _puts("len: ");
-	 * _puts("\n");
-         */
 
 	return (i);
 }
