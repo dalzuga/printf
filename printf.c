@@ -1,6 +1,5 @@
-#include <unistd.h> 		/* write(2) */
-#include <stdarg.h>		/* va_arg(3) */
 #include "holberton.h"
+#include <stdio.h>
 
 /**
  * Allowed functions:
@@ -16,14 +15,44 @@
 
 int _printf(const char *format, ...)
 {
-	unsigned long int i;
-
-	for (i = 0; format[i] != '\0'; i++)
+	unsigned long int i, n;
+	va_list arg_ptr;
+	int j;
+	fn_print params[] =
 	{
-		_putchar(format[i]);
+		{'d', print_d},
+		{'i', print_d},
+		{0, 0}
+	};
+
+	/* format is the last required argument */
+	va_start(arg_ptr, format);
+
+	for (i = 0, n = 0; format[i] != '\0'; i++, n++)
+	{
+		if (format[i] == '%')
+		{
+			for (j = 0; params[j].c; j++)
+			{
+				if (params[j].c == format[i + 1])
+				{
+					params[j].fp(&arg_ptr);
+					i += 2;
+					n += 2;
+				}
+			}
+
+			if (format[i + 1] == '%')
+			{
+				print_char('%');
+				i += 2;
+				n++;
+			}
+		}
+		print_char(format[i]);
 	}
 
-	return (i);
+	return (n);
 }
 
 void _puts(const char *s)
@@ -32,11 +61,11 @@ void _puts(const char *s)
 
 	for (i = 0; s[i] != '\0'; i++)
 	{
-		_putchar(s[i]);
+		print_char(s[i]);
 	}
 }
 
-void _putchar(char c)
+void print_char(char c)
 {
 	write(1, &c, 1);
 }
