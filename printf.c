@@ -26,7 +26,7 @@ int _printf(const char *format, ...)
 
 	for (i = 0; format[i] != '\0'; i++)
 	{
-		_putchar(format[i]);
+		print_char(format[i]);
 	}
 
 	d = va_arg(arg_ptr, int);
@@ -42,11 +42,11 @@ void _puts(const char *s)
 
 	for (i = 0; s[i] != '\0'; i++)
 	{
-		_putchar(s[i]);
+		print_char(s[i]);
 	}
 }
 
-void _putchar(char c)
+void print_char(char c)
 {
 	write(1, &c, 1);
 }

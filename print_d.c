@@ -9,12 +9,12 @@ void print_number(int n)
 {
 	int aux1, i, count, x;	/* declaring variables */
 	if (n<0)
-		_putchar('-');	/* if negative, insert negative sign */
+		print_char('-');	/* if negative, insert negative sign */
 
 	/* handles special case of extreme negative */
 	if (n==-2147483648)
 	{
-		_putchar(50);
+		print_char(50);
 		n = -147483648;
 	}
 
@@ -27,7 +27,7 @@ void print_number(int n)
 	for (i=1;i<count;i++)	/* make x big */
 		x=x*10;
 
-	_putchar((n/x)+48);
+	print_char((n/x)+48);
 
 	if (x>1)
 	{
@@ -35,7 +35,7 @@ void print_number(int n)
 		/* if there's any zero's, don't miss them */
 		for (i=1;i<count_digits(n)-count_digits(aux1);i++)
 		{
-			_putchar(48);
+			print_char(48);
 		}
 		print_number(n - ((int) n/x) * x); /* recursive protocol */
 	}
