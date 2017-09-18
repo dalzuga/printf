@@ -26,15 +26,26 @@ int _printf(const char *format, ...)
 
 	for (i = 0; format[i] != '\0'; i++)
 	{
-		print_char(format[i]);
+		if (format[i] == '%')
+		{
+			if (format[i + 1] == 'd')
+			{
+				d = va_arg(arg_ptr, int);
+				print_number(d);
+				i++;
+			}
+		}
+		else
+		{
+			print_char(format[i]);
+		}
 	}
 
-	d = va_arg(arg_ptr, int);
-
-	printf("len: %d\n", d);
-	_puts("len: ");
-	print_number(d);
-	_puts("\n");
+	/* 
+         * printf("len: %d\n", d);
+	 * _puts("len: ");
+	 * _puts("\n");
+         */
 
 	return (i);
 }

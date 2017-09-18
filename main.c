@@ -19,7 +19,8 @@ int main(void)
 	len = _printf("Let's try to printf a simple sentence.\n");
 	len2 = printf("Let's try to printf a simple sentence.\n");
 
-	_printf("%d\n", len);
+	_printf("hello\n");
+	_printf("hello %d\n", len);
 
 	if (0)
 	{
