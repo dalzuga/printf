@@ -32,6 +32,9 @@ int _printf(const char *format, ...)
 	d = va_arg(arg_ptr, int);
 
 	printf("len: %d\n", d);
+	_puts("len: ");
+	print_number(d);
+	_puts("\n");
 
 	return (i);
 }
