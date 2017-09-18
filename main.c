@@ -28,6 +28,10 @@ int main(void)
 	printf("hello %%\n");
 	_printf("hello %%\n");
 
+	printf("hello %%%\n");
+	_printf("hello %%%\n");
+
+
 	/* 
          * ui = (unsigned int)INT_MAX + 1024;
 	 * addr = (void *)0x7ffe637541f0;

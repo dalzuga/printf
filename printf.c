@@ -36,20 +36,17 @@ int _printf(const char *format, ...)
 				if (params[j].c == format[i + 1])
 				{
 					params[j].fp(&arg_ptr);
-					i++;
+					i += 2;
 				}
 			}
 
 			if (format[i + 1] == '%')
 			{
 				print_char('%');
+				i += 2;
 			}
-
 		}
-		else
-		{
-			print_char(format[i]);
-		}
+		print_char(format[i]);
 	}
 
 	return (i);
