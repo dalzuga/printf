@@ -15,19 +15,20 @@
 
 int _printf(const char *format, ...)
 {
-	unsigned long int i;
+	unsigned long int i, n;
 	va_list arg_ptr;
 	int j;
 	fn_print params[] =
 	{
 		{'d', print_d},
+		{'i', print_d},
 		{0, 0}
 	};
 
 	/* format is the last required argument */
 	va_start(arg_ptr, format);
 
-	for (i = 0; format[i] != '\0'; i++)
+	for (i = 0, n = 0; format[i] != '\0'; i++, n++)
 	{
 		if (format[i] == '%')
 		{
@@ -37,6 +38,7 @@ int _printf(const char *format, ...)
 				{
 					params[j].fp(&arg_ptr);
 					i += 2;
+					n += 2;
 				}
 			}
 
@@ -44,12 +46,13 @@ int _printf(const char *format, ...)
 			{
 				print_char('%');
 				i += 2;
+				n++;
 			}
 		}
 		print_char(format[i]);
 	}
 
-	return (i);
+	return (n);
 }
 
 void _puts(const char *s)
