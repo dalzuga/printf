@@ -6,7 +6,7 @@
  */
 int main(void)
 {
-    _printf("hi\n");
+	_printf("hi\n");
 
-    return (0);
+	return (0);
 }
