@@ -1,6 +1,6 @@
-all: main 0-main
+all: main
 
 main: *.c main.c
-	gcc -Wall -Werror -Wextra -pedantic *.c main.c -o main
+	gcc -Wall -Werror -Wextra -pedantic printf.c main.c -o main
 0-main: printf.c test/0-main.c
 	gcc -Wall -Werror -Wextra -pedantic printf.c test/0-main.c -o 0-main
